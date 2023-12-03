@@ -73,6 +73,8 @@ The training process for LightGCN was more complex, involving several advanced s
 * **Layer Tuning:** Determining the optimal number of layers in the LightGCN was critical to capture the right level of user-item interactions without overfitting.
 * **Optimization:** I used advanced optimization techniques and loss functions tailored for graph neural networks to effectively train the LightGCN model.
 
+![light-gcn-loss-training](figures/light-gcn-loss-training.png)
+
 # Evaluation
 
 In the evaluation of both the Nearest Neighbors and Light Graph Convolutional Network (LightGCN) models, I focused on using Precision@10 (P@10) and Recall@10 (R@10) as the primary metrics. These metrics were pivotal in assessing the effectiveness of the models in predicting the top 10 movie recommendations for users.
@@ -81,31 +83,40 @@ In the evaluation of both the Nearest Neighbors and Light Graph Convolutional Ne
 
 For the Nearest Neighbors model, I conducted evaluations with different rating thresholds to understand the model's performance in various scenarios:
 
-* **With a rating threshold of 3:**
-  * **Precision@10:** 0.84
-  * **Recall@10:** 0.24
-* **With a rating threshold of 4:**
-  * **Precision@10:** 0.61
-  * **Recall@10:** 0.21
+* **Train**
+  * **With a rating threshold of 3:**
+    * **Precision@10:** 0.84
+    * **Recall@10:** 0.24
+  * **With a rating threshold of 4:**
+    * **Precision@10:** 0.61
+    * **Recall@10:** 0.21
+* **Test**
+  * **With a rating threshold of 3:**
+    * **Precision@10:** 0.18
+    * **Recall@10:** 0.03
+  * **With a rating threshold of 4:**
+    * **Precision@10:** 0.13
+    * **Recall@10:** 0.03
 
-These results indicated that the model was more precise and selective at a lower threshold, with a notable performance in identifying relevant recommendations.
+These results indicate that while the Nearest Neighbors model had a moderate level of precision, its recall was relatively low, suggesting a narrower scope of relevant item coverage.
 
 ### Evaluation of LightGCN Model
 
 For the LightGCN model, I also used a rating threshold of 3 for consistency in comparison:
 
-* **Precision@10:** 0.30
-* **Recall@10:** 0.23
+* **Test**
+  * **Precision@10:** 0.30
+  * **Recall@10:** 0.23
 
-Although the precision of the LightGCN model was lower compared to the Nearest Neighbors approach, it still demonstrated a significant ability to capture relevant recommendations, especially considering the complexity of user-item interactions in the graph structure.
+![light-gcn-loss-training](figures/light-gcn-metrics-training.png)
 
-Through these evaluations, I gained valuable insights into the strengths and limitations of each model, allowing me to understand their applicability in different contexts of recommendation systems.
+The LightGCN model showed a more balanced performance in both precision and recall, especially considering the complexity of the user-item interactions it managed.
 
 # Results
 
-The implementation of the Nearest Neighbors and Light Graph Convolutional Network (LightGCN) models yielded insightful results:
+The results from the Nearest Neighbors and Light Graph Convolutional Network (LightGCN) models provided key insights:
 
-* **Nearest Neighbors Model:** Demonstrated high precision with a Precision@10 of 0.8377 at a rating threshold of 3, indicating strong relevancy in its recommendations. However, its recall was lower, suggesting a more selective approach to recommendations.
-* **LightGCN Model:** Showed a balanced performance with a Precision@10 of 0.2996 and Recall@10 of 0.2324 at the same threshold, highlighting its capability to handle complex user-item interactions despite a lower precision compared to the Nearest Neighbors model.
+* **Nearest Neighbors Model:** This model showed moderate precision with a Precision@10 of 0.18 at a rating threshold of 3 and 0.13 at a threshold of 4. The Recall@10 was 0.03 for both thresholds, indicating a more selective approach in its recommendations.
+* **LightGCN Model:** Achieved a balanced performance with a Precision@10 of 0.30 and a Recall@10 of 0.23 at a rating threshold of 3, demonstrating its ability to effectively capture complex user-item interactions.
 
-These results underscore the effectiveness of both models in different aspects of recommendation systems, with Nearest Neighbors excelling in precision and LightGCN in capturing complex relationships.
+These findings highlight the Nearest Neighbors model's limitations in recall and the LightGCN model's more balanced approach in prediction accuracy, underscoring their different strengths in recommendation systems.
